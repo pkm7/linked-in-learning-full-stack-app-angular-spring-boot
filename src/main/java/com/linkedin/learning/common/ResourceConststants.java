@@ -1,4 +1,4 @@
-package com.linkedin.learning.rest;
+package com.linkedin.learning.common;
 
 public class ResourceConststants {
 
