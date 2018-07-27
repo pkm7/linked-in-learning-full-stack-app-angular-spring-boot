@@ -1,49 +1,46 @@
 package com.linkedin.learning.model.response;
 
-import com.linkedin.learning.model.Links;
+import java.time.LocalDate;
 
 public class ReservationResponse {
-
+	
 	private Long id;
-	private Integer noomNumber;
-	private Integer price;
-	private Links links;
+	private LocalDate checkin;
+	private LocalDate checkout;
+	
+	
 	
 	
 	public ReservationResponse() {
 		super();
 	}
 	
-	public ReservationResponse(Long id, Integer noomNumber, Integer price) {
+	
+	public ReservationResponse(Long id, LocalDate checkin, LocalDate checkout) {
 		super();
 		this.id = id;
-		this.noomNumber = noomNumber;
-		this.price = price;
+		this.checkin = checkin;
+		this.checkout = checkout;
 	}
-	
-	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Integer getNoomNumber() {
-		return noomNumber;
+	public LocalDate getCheckin() {
+		return checkin;
 	}
-	public void setNoomNumber(Integer noomNumber) {
-		this.noomNumber = noomNumber;
+	public void setCheckin(LocalDate checkin) {
+		this.checkin = checkin;
 	}
-	public Integer getPrice() {
-		return price;
+	public LocalDate getCheckout() {
+		return checkout;
 	}
-	public void setPrice(Integer price) {
-		this.price = price;
+	public void setCheckout(LocalDate checkout) {
+		this.checkout = checkout;
 	}
-	public Links getLinks() {
-		return links;
-	}
-	public void setLinks(Links links) {
-		this.links = links;
-	}
+	
+	
+	
 }

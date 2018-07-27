@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs';
+// Statics
+import 'rxjs/add/observable/throw';
+// Operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +19,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    
+  constructor(private http:Http){
+  }
+  
+  private baseUrl:string = 'http://localhost:8080';
   roomsearch : FormGroup;
   public submitted : boolean;
   rooms : Room[];
@@ -17,17 +34,34 @@ export class AppComponent implements OnInit {
           checkout : new FormControl('')
       });
       
-      this.rooms = ROOMS;
-      
   }
     
   onSubmit({value,valid}:{value:Roomsearch, valid:boolean}){
-      console.log(value);
+      console.log(1);
+      this.getAll()
+      .subscribe(
+          rooms => this.rooms,
+          err => {
+                console.log(err);  
+            }
+          );
   }
     
   reserveRoom(value:string){
       console.log(value);
   }
+    
+  getAll():Observable<Room[]>{
+            console.log(2);
+   return this.http.get(this.baseUrl + '/room/reservation/v1/?checkin=2017-12-31&checkout=2018-01-01')
+    .map(this.mapRoom);
+  }
+    
+  
+  mapRoom(response:Response):Room[]{
+    return response.json().content;
+  }
+    
 }
 
 
@@ -43,23 +77,4 @@ export interface Room {
     links : string;    
 }
 
-var ROOMS:Room[] = [
-{
-    "id" : "1234",
-    "roomNumber" : "409",
-    "price" : "29",
-    "links" : ""
-},
-{
-    "id" : "1235",
-    "roomNumber" : "309",
-    "price" : "19",
-    "links" : ""
-},
-{
-    "id" : "1236",
-    "roomNumber" : "101",
-    "price" : "35",
-    "links" : ""
-}
-]
+
