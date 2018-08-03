@@ -29,7 +29,7 @@ public class H2Bootstrap implements CommandLineRunner{
 		
 		System.out.println("Printing data:");
 		for (RoomEntity room : itr) {
-			System.out.println(room.getRoomNumber());
+			System.out.println(room.getId()+"_"+room.getRoomNumber()+"_"+room.getPrice());
 		}
 		System.out.println("<------- End Bootstrapping data:");
 	}

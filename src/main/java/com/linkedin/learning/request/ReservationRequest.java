@@ -48,17 +48,9 @@ public class ReservationRequest {
 	public void setCheckout(LocalDate checkout) {
 		this.checkout = checkout;
 	}
-
-
-
-
 	public Long getRoomId() {
 		return roomId;
 	}
-
-
-
-
 	public void setRoomId(Long roomId) {
 		this.roomId = roomId;
 	}
