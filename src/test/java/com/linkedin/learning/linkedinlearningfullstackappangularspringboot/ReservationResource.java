@@ -43,10 +43,10 @@ public class ReservationResource {
 	@Test
 	public void test_400() {
 		given()
-		.when()
-		.get("/" + "AAAB" )
-		.then()
-		.statusCode(400);
+			.when()
+				.get("/" + "AAAB" )
+			.then()
+				.statusCode(400);
 	}
 
 
